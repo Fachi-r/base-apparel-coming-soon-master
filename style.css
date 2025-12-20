@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..600;1,100..700&display=swap');
+
+@theme {
+    --color-base: lch(25.12% 3.24 19.93);
+    --color-primary: lch(67.64% 22.18 21.52);
+    --color-secondary: lch(61.44% 65.28 27.83);
+}
+
+:root {
+    --color-base: hsl(0, 6%, 24%);
+    --color-primary: hsl(0, 36%, 70%);
+    --color-secondary: hsl(0, 93%, 68%);
+}
+
+@import "tailwindcss";
+
+@layer base {
+    * {
+        font-family: "Josefin Sans", sans-serif;
+    }
+
+    button {
+        @apply border-green-300
+    }
+}
+
+.border-primary {
+    border-color: var(--color-primary);
+}
+
+.border-primary\/50 {
+    border-color: color-mix(in oklab, var(--color-primary)
+            /* lch(67.64% 22.18 21.52) = #cc9797 */
+            50%, transparent);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+button {
+    --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)),
+        0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    --shadow-color: color-mix(in oklab, var(--color-secondary) 35%, transparent);
+    --gradient-1: color-mix(in oklab, var(--color-secondary) 50%, transparent);
+    --gradient-2: color-mix(in oklab, var(--color-secondary) 80%, transparent);
+
+    background: linear-gradient(120deg, var(--gradient-1) 50%, var(--gradient-2));
+    /* background-color: color-mix(in oklab, var(--color-secondary) 50%, transparent); */
+    box-shadow: 0px 20px 25px -5px var(--tw-shadow-color);
+    -webkit-box-shadow: 0px 20px 25px -5px var(--shadow-color);
+    -moz-box-shadow: 0px 20px 25px -5px var(--shadow-color);
+
+    &:hover {
+        box-shadow: 0px 20px 25px 0px var(--shadow-color);
+        -webkit-box-shadow: 0px 12px 12px 0px var(--shadow-color);
+        -moz-box-shadow: 0px 12px 12px 0px var(--shadow-color);
+    }
+}
+
+input#email {
+    /* border: 1px solid ; */
+    padding-block: .75rem;
+    padding-inline: 1.5rem;
+    border-radius: 100vw;
+    width: 100%;
+    outline: none;
+
+    &:invalid {
+        border-width: 2px;
+        border-color: var(--color-secondary);
+    }
+
+    &::placeholder {
+        color: var(--color-primary);
+        opacity: 50%;
+    }
+
+    &:focus-within {}
+}
+
+
+
+.primary {
+    color: var(--color-primary);
+}
+
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}

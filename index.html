@@ -1,33 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
+
   <title>Frontend Mentor | Base Apparel coming soon page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
+  <main class="h-screen flex flex-col">
 
-  We're coming soon
+    <header class="flex items-center gap-1.5 py-8 px-8">
+      <div class="aspect-square w-5 border-2 border-primary rounded-full">
+      </div>
+      <p class="uppercase text-[12px] font-bold tracking-[3px] leading-none">
+        Base <br> Apparel
+      </p>
+    </header>
 
-  Hello fellow shoppers! We're currently building our new fashion store. 
-  Add your email below to stay up-to-date with announcements and our launch deals.
+    <picture>
+      <source srcset="./images/hero-desktop.jpg" media="(width > 375px)">
+      <img class="w-full object-cover" src="./images/hero-mobile.jpg" alt="Hero Image">
+    </picture>
 
-  Email Address
-  
-  <footer>
-    <p class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </p>
-  </footer>
+    <div class="content flex-1 flex flex-col items-center py-16 px-[38px] ">
+
+      <h1 class="uppercase text-center text-[42px] font-bold tracking-[12px] leading-[1.05]">
+        <span class="font-light text-primary">
+          We're
+        </span>
+        coming soon
+      </h1>
+
+
+      <p class="text-primary text-center text-[14px] pt-4 pb-8 leading-[1.55]">
+        Hello fellow shoppers! We're currently building our new fashion store.
+        Add your email below to stay up-to-date with announcements and our launch deals.
+      </p>
+
+      <label class="relative rounded-full w-full" for="email">
+
+        <input 
+          id="email" 
+          type="email" 
+          placeholder="Email Address"
+          class="border border-primary/50 text-[14px]"
+        >
+
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 
+
+          py-[10px] px-5 rounded-full cursor-pointer z-2"
+        >
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 640 640"
+            class="size-[26px] fill-white"
+            aria-hidden="true">
+            <path
+              d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z" />
+          </svg>
+
+        </button>
+      </label>
+
+    </div>
+
+    <footer class="fixed bottom-4 left-1/2 -translate-x-1/2">
+      <p class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="#">Fachi</a>.
+      </p>
+    </footer>
+  </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
+
 </html>
