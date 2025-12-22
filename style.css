@@ -10,6 +10,12 @@
     --color-base: hsl(0, 6%, 24%);
     --color-primary: hsl(0, 36%, 70%);
     --color-secondary: hsl(0, 93%, 68%);
+
+    --gradient-01: 135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%);
+    --gradient-02: 135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%);
+
+    --input-padding: .75rem;
+    --button-width: 2rem;
 }
 
 @import "tailwindcss";
@@ -28,47 +34,58 @@
     color: var(--color-primary);
 }
 
-button {
-    --shadow-color: color-mix(in oklab, var(--color-secondary) 35%, transparent);
-    --shadow-hover: color-mix(in oklab, var(--color-secondary) 35%, grey 15%);
-    --gradient-1: color-mix(in oklab, var(--color-secondary) 50%, white);
-    --gradient-2: color-mix(in oklab, var(--color-secondary) 80%, white);
+.text-secondary {
+    color: var(--color-secondary);
+}
 
-    --hover: color-mix(in oklab, var(--color-secondary) 25%, white);
+main .container.desktop {
+    background-image: url("./images/bg-pattern-desktop.svg");
 
-    transition: all .3s ease;
-    background: linear-gradient(120deg, var(--gradient-1) 50%, var(--gradient-2));
-    box-shadow: 0px 8px 12px 0px var(--tw-shadow-color);
-    -webkit-box-shadow: 0px 8px 12px 0px var(--shadow-color);
-    -moz-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-    &:hover {
-        box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-        -webkit-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-        -moz-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-
-        background: linear-gradient(120deg, var(--hover) 50%, var(--hover));
-    }
+    padding-left: 8rem;
+    padding-right: 12rem;
 }
 
 input#email {
     position: relative;
     border: 1px solid;
     border-color: color-mix(in oklab, var(--color-primary) 50%, transparent);
-    padding-block: .75rem;
+    padding-block: var(--input-padding);
     padding-inline: 1.5rem;
     padding-right: calc(25% + 2rem);
     border-radius: 100vw;
     width: 100%;
     outline: none;
-    /* transition: outline .2s ease; */
+    font-size: 14px;
+
+    +img {
+        position: absolute;
+        top: 50%;
+        right: calc(25% + .5rem);
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+    }
+
+    ~.invalid-text {
+        position: absolute;
+        top: 100%;
+        padding-block: .75rem;
+        color: var(--color-secondary);
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+    }
 
     &:invalid {
         outline: 2px solid var(--color-secondary);
         outline-offset: -2px;
     }
 
-    &:invalid + img {
+    &:invalid~* {
         opacity: 1;
     }
 
@@ -78,18 +95,47 @@ input#email {
     }
 }
 
+button {
+    --hover: color-mix(in oklab, var(--color-secondary) 25%, white);
+    --shadow-color: color-mix(in oklab, var(--color-secondary) 35%, transparent);
+    --shadow-hover: color-mix(in oklab, var(--color-secondary) 35%, grey 15%);
 
+    padding-block: calc(var(--input-padding) + 3px);
+    padding-inline: var(--button-width);
+    background: linear-gradient(var(--gradient-01));
+    box-shadow: 0px 8px 12px 0px var(--shadow-color);
+    -webkit-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+    -moz-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+    transition: all .3s ease;
 
-.primary {
-    color: var(--color-primary);
+    &:hover {
+        background: linear-gradient(120deg, var(--hover) 50%, var(--hover));
+        box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        -webkit-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        -moz-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+    }
 }
 
+.hidden {
+    display: none;
+}
 
 .attribution {
     font-size: 11px;
     text-align: center;
+
+    a {
+        color: hsl(228, 45%, 44%);
+    }
 }
 
-.attribution a {
-    color: hsl(228, 45%, 44%);
+@media screen and (min-width: 768px) {
+    :root {
+        --input-padding: 1rem;
+        --button-width: 2.75rem;
+    }
+
+    input#email {
+        font-size: 1rem
+    }
 }
