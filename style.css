@@ -18,20 +18,10 @@
     * {
         font-family: "Josefin Sans", sans-serif;
     }
-
-    button {
-        @apply border-green-300
-    }
 }
 
 .border-primary {
     border-color: var(--color-primary);
-}
-
-.border-primary\/50 {
-    border-color: color-mix(in oklab, var(--color-primary)
-            /* lch(67.64% 22.18 21.52) = #cc9797 */
-            50%, transparent);
 }
 
 .text-primary {
@@ -39,44 +29,53 @@
 }
 
 button {
-    --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)),
-        0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     --shadow-color: color-mix(in oklab, var(--color-secondary) 35%, transparent);
-    --gradient-1: color-mix(in oklab, var(--color-secondary) 50%, transparent);
-    --gradient-2: color-mix(in oklab, var(--color-secondary) 80%, transparent);
+    --shadow-hover: color-mix(in oklab, var(--color-secondary) 35%, grey 15%);
+    --gradient-1: color-mix(in oklab, var(--color-secondary) 50%, white);
+    --gradient-2: color-mix(in oklab, var(--color-secondary) 80%, white);
 
+    --hover: color-mix(in oklab, var(--color-secondary) 25%, white);
+
+    transition: all .3s ease;
     background: linear-gradient(120deg, var(--gradient-1) 50%, var(--gradient-2));
-    /* background-color: color-mix(in oklab, var(--color-secondary) 50%, transparent); */
-    box-shadow: 0px 20px 25px -5px var(--tw-shadow-color);
-    -webkit-box-shadow: 0px 20px 25px -5px var(--shadow-color);
-    -moz-box-shadow: 0px 20px 25px -5px var(--shadow-color);
+    box-shadow: 0px 8px 12px 0px var(--tw-shadow-color);
+    -webkit-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+    -moz-box-shadow: 0px 8px 12px 0px var(--shadow-color);
 
     &:hover {
-        box-shadow: 0px 20px 25px 0px var(--shadow-color);
-        -webkit-box-shadow: 0px 12px 12px 0px var(--shadow-color);
-        -moz-box-shadow: 0px 12px 12px 0px var(--shadow-color);
+        box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        -webkit-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        -moz-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+
+        background: linear-gradient(120deg, var(--hover) 50%, var(--hover));
     }
 }
 
 input#email {
-    /* border: 1px solid ; */
+    position: relative;
+    border: 1px solid;
+    border-color: color-mix(in oklab, var(--color-primary) 50%, transparent);
     padding-block: .75rem;
     padding-inline: 1.5rem;
+    padding-right: calc(25% + 2rem);
     border-radius: 100vw;
     width: 100%;
     outline: none;
+    /* transition: outline .2s ease; */
 
     &:invalid {
-        border-width: 2px;
-        border-color: var(--color-secondary);
+        outline: 2px solid var(--color-secondary);
+        outline-offset: -2px;
+    }
+
+    &:invalid + img {
+        opacity: 1;
     }
 
     &::placeholder {
         color: var(--color-primary);
         opacity: 50%;
     }
-
-    &:focus-within {}
 }
 
 
