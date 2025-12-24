@@ -2,7 +2,7 @@ let heroMobile = document.querySelector(".hero-mobile");
 let heroDesktop = document.querySelector(".hero-desktop");
 let container = document.querySelector(".container")
 
-const mediaQuery = window.matchMedia("(max-width: 768px)");
+const mediaQuery = window.matchMedia("(max-width: 1024px)");
 
 function show (element) {
     if (element.classList?.contains("hidden")) {

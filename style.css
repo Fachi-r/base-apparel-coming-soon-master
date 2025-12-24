@@ -64,7 +64,7 @@ input#email {
     +img {
         position: absolute;
         top: 50%;
-        right: calc(25% + .5rem);
+        right: calc(25% + .25rem);
         transform: translateY(-50%);
         opacity: 0;
         transition: opacity .3s ease-in-out;
@@ -73,7 +73,8 @@ input#email {
     ~.invalid-text {
         position: absolute;
         top: 100%;
-        padding-block: .75rem;
+        left: 1.5rem;
+        padding-block: .5rem;
         color: var(--color-secondary);
         font-weight: bold;
         opacity: 0;

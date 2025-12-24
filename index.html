@@ -16,9 +16,9 @@
 <body>
   <main class="h-screen md:flex md:flex-row">
 
-    <div class="container flex flex-col">
+    <div class="container flex flex-col mx-auto">
 
-      <header class="flex items-center gap-1.5 py-8 px-8 md:py-16">
+      <header class="flex items-center gap-1.5 py-8 px-8 lg:py-[4rem]">
         <img src="./images/logo.svg" alt="Logo" class="object-cover h-[22px] md:h-min">
       </header>
 
@@ -27,7 +27,7 @@
       <div class="content flex-1 flex flex-col items-center py-16 px-[38px]">
 
         <h1 class="uppercase text-center text-[42px] font-bold tracking-[12px] leading-[1.05] 
-          md:text-left md:text-[64px]">
+          lg:text-left md:text-[64px] md:pr-20">
           <span class="font-light text-primary">
             We're
           </span>
@@ -36,12 +36,12 @@
 
 
         <p class="text-primary text-center text-[14px] pt-4 pb-8 leading-[1.55] 
-          md:text-left md:text-[16px] md:pt-6 md:pb-10">
+          md:text-left md:text-[16px] md:pt-8 md:pb-12">
           Hello fellow shoppers! We're currently building our new fashion store.
           Add your email below to stay up-to-date with announcements and our launch deals.
         </p>
 
-        <label class="relative rounded-full w-full" for="email">
+        <label class="relative rounded-full w-full max-w-md" for="email">
 
           <input id="email" type="email" placeholder="Email Address">
 
@@ -65,7 +65,7 @@
 
     </div>
 
-    <img class="hero-desktop h-full 
+    <img class="hero-desktop size-full 
     object-cover" src="./images/hero-desktop.jpg" alt="Desktop Hero Image">
 
     <footer class="fixed bottom-4 left-1/2 -translate-x-1/2">
