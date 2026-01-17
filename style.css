@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..600;1,100..700&display=swap');
+@import "tailwindcss";
 
 @theme {
     --color-base: lch(25.12% 3.24 19.93);
@@ -18,7 +19,6 @@
     --button-width: 2rem;
 }
 
-@import "tailwindcss";
 
 @layer base {
     * {
@@ -81,12 +81,12 @@ input#email {
         transition: opacity .3s ease-in-out;
     }
 
-    &:invalid {
+    &.invalid {
         outline: 2px solid var(--color-secondary);
         outline-offset: -2px;
     }
 
-    &:invalid~* {
+    &.invalid~* {
         opacity: 1;
     }
 
