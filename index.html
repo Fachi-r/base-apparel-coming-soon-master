@@ -14,20 +14,19 @@
 </head>
 
 <body>
-  <main class="h-screen md:flex md:flex-row">
+  <main class="lg:flex lg:flex-row h-screen">
 
-    <div class="container flex flex-col mx-auto">
+    <div class="flex flex-col mx-auto container">
 
-      <header class="flex items-center gap-1.5 py-8 px-8 lg:py-[4rem]">
-        <img src="./images/logo.svg" alt="Logo" class="object-cover h-[22px] md:h-min">
+      <header class="flex items-center gap-1.5 px-8 py-8 lg:py-16">
+        <img src="./images/logo.svg" alt="Logo" class="h-[22px] md:h-min object-cover">
       </header>
 
-      <img class="hero-mobile size-full object-cover" src="./images/hero-mobile.jpg" alt="Mobile Hero Image">
+      <img class="size-full object-cover hero-mobile" src="./images/hero-mobile.jpg" alt="Mobile Hero Image">
 
-      <div class="content flex-1 flex flex-col items-center py-16 px-[38px]">
+      <div class="flex flex-col flex-1 items-center px-[38px] py-16 content">
 
-        <h1 class="uppercase text-center text-[42px] font-bold tracking-[12px] leading-[1.05] 
-          lg:text-left md:text-[64px] md:pr-20">
+        <h1 class="lg:pr-20 font-bold text-[42px] md:text-[64px] lg:text-left text-center uppercase leading-[1.05] tracking-[12px]">
           <span class="font-light text-primary">
             We're
           </span>
@@ -35,21 +34,18 @@
         </h1>
 
 
-        <p class="text-primary text-center text-[14px] pt-4 pb-8 leading-[1.55] 
-          md:text-left md:text-[16px] md:pt-8 md:pb-12">
+        <p class="pt-4 lg:pt-8 pb-8 lg:pb-12 text-[14px] text-primary lg:text-[16px] lg:text-left text-center leading-[1.55]">
           Hello fellow shoppers! We're currently building our new fashion store.
           Add your email below to stay up-to-date with announcements and our launch deals.
         </p>
 
-        <label class="relative rounded-full w-full max-w-md" for="email">
+        <form action="#" class="relative rounded-full w-full max-w-md form">
 
           <input id="email" type="email" placeholder="Email Address">
 
           <img class="error-icon" src="./images/icon-error.svg" alt="icon-error">
 
-          <button class="absolute -right-1 top-1/2 -translate-y-1/2 
-
-          px-[26px] rounded-full cursor-pointer z-2">
+          <button class="top-1/2 -right-1 z-2 absolute px-[26px] rounded-full -translate-y-1/2 cursor-pointer">
 
             <img src="./images/icon-arrow.svg" alt="Arrow" class="">
 
@@ -59,16 +55,15 @@
             Please provide a valid email
           </small>
 
-        </label>
+        </form>
 
       </div>
 
     </div>
 
-    <img class="hero-desktop size-full 
-    object-cover" src="./images/hero-desktop.jpg" alt="Desktop Hero Image">
+    <img class="size-full object-cover hero-desktop" src="./images/hero-desktop.jpg" alt="Desktop Hero Image">
 
-    <footer class="fixed bottom-4 left-1/2 -translate-x-1/2">
+    <footer class="bottom-4 left-1/2 fixed -translate-x-1/2">
       <p class="attribution">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
         Coded by <a href="#">Fachi</a>.
