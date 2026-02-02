@@ -39,7 +39,7 @@
 
       <!-- Content -->
       <form action="#" class="content">
-        <h1 class="title">
+        <h1 class="heading">
           <span class="highlight"> We're </span>
           coming soon
         </h1>
@@ -50,19 +50,24 @@
           launch deals.
         </p>
 
-        <label for="email" class="">
-          <input id="email" type="email" placeholder="Email Address" />
+        <div class="input-container">
+          <input
+            class="email-input"
+            id="email"
+            type="email"
+            placeholder="Email Address"
+          />
           <img
             class="error-icon"
             src="./images/icon-error.svg"
             alt="icon-error"
           />
-          <button class="button">
+          <button class="button" type="submit">
             <img src="./images/icon-arrow.svg" alt="Arrow" class="arrow-icon" />
           </button>
 
           <small class="invalid-text"> Please provide a valid email </small>
-        </label>
+        </div>
       </form>
     </main>
 

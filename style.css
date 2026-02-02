@@ -7,9 +7,6 @@
 
   --gradient-1: 135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%);
   --gradient-2: 135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%);
-
-  --input-padding: 0.75rem;
-  --button-width: 2rem;
 }
 
 /*
@@ -21,6 +18,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 /* 2. Remove default margin */
@@ -84,116 +82,152 @@ h6 {
   text-wrap: balance;
 }
 
-/**/
-/* .layout { */
-/*   display: grid; */
-/*   min-height: 100vh; */
-/*   /* align-items: start; */
-*/
-/**/
-/*   grid-template-columns: 1fr; */
-/*   grid-template-areas: */
-/*     "header" */
-/*     "hero" */
-/*     "content"; */
-/**/
-/*   > * { */
-/*     border: 1px solid red; */
-/*   } */
-/* } */
-/**/
-/* .header { */
-/*   grid-area: header; */
-/*   height: min-content; */
-/* } */
-/**/
-/* .hero { */
-/*   grid-area: hero; */
-/*   width: 100%; */
-/*   height: 100%; */
-/*   object-fit: cover; */
-/* } */
-/**/
-/* .content { */
-/*   grid-area: content; */
-/* } */
+.layout {
+  display: grid;
 
-/* @media (min-width: 1024px) { */
-/*   .layout { */
-/*     grid-template-columns: 1fr auto; */
-/*     grid-template-rows: auto 1fr; */
-/**/
-/*     grid-template-areas: */
-/*       "header  hero" */
-/*       "content hero"; */
-/*   } */
-/* } */
+  grid-template-areas:
+    "header"
+    "hero"
+    "content";
 
-input#email {
-  position: relative;
-  border: 1px solid;
-  border-color: color-mix(in oklab, var(--color-primary) 50%, transparent);
-  padding-block: var(--input-padding);
-  padding-inline: 1.5rem;
-  padding-right: calc(25% + 2rem);
-  border-radius: 100vw;
-  width: 100%;
-  outline: none;
-  font-size: 14px;
+  @media (min-width: 1024px) {
+    .layout {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto 1fr;
 
-  + img {
-    position: absolute;
-    top: 50%;
-    right: calc(25% + 0.25rem);
-    transform: translateY(-50%);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  ~ .invalid-text {
-    position: absolute;
-    top: 100%;
-    left: 1.5rem;
-    padding-block: 0.5rem;
-    color: var(--color-secondary);
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  &.invalid {
-    outline: 2px solid var(--color-secondary);
-    outline-offset: -2px;
-  }
-
-  &.invalid ~ * {
-    opacity: 1;
-  }
-
-  &::placeholder {
-    color: var(--color-primary);
-    opacity: 50%;
+      grid-template-areas:
+        "header  hero"
+        "content hero";
+    }
   }
 }
 
-button {
-  --hover: color-mix(in oklab, var(--color-secondary) 25%, white);
-  --shadow-color: color-mix(in oklab, var(--color-secondary) 35%, transparent);
-  --shadow-hover: color-mix(in oklab, var(--color-secondary) 35%, grey 15%);
+.header {
+  grid-area: header;
+  padding-inline: 2.125rem;
+  padding-block: 2.125rem;
 
-  padding-block: calc(var(--input-padding) + 3px);
-  padding-inline: var(--button-width);
-  background: linear-gradient(var(--gradient-01));
-  box-shadow: 0px 8px 12px 0px var(--shadow-color);
-  -webkit-box-shadow: 0px 8px 12px 0px var(--shadow-color);
-  -moz-box-shadow: 0px 8px 12px 0px var(--shadow-color);
-  transition: all 0.3s ease;
+  .logo {
+    height: 1.275rem;
+  }
+}
 
-  &:hover {
-    background: linear-gradient(120deg, var(--hover) 50%, var(--hover));
-    box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-    -webkit-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-    -moz-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+.hero {
+  grid-area: hero;
+
+  .hero-img {
+    width: 100%;
+  }
+}
+
+.content {
+  grid-area: content;
+
+  padding: 3.5rem 2rem;
+
+  .heading {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    letter-spacing: 0.625rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--clr-grey-900);
+    /* padding-inline: 2rem; */
+
+    .highlight {
+      font-weight: 300;
+      color: var(--clr-pink-400);
+    }
+  }
+
+  .description {
+    font-size: 0.825rem;
+    color: var(--clr-pink-400);
+    text-align: center;
+    padding-block: 1rem;
+  }
+
+  .input-container {
+    --input-padding: 0.75rem;
+    --button-width: 1.5rem;
+
+    position: relative;
+    margin-top: 1rem;
+
+    .email-input {
+      outline: none;
+      border: 1px solid;
+      border-color: hsl(from var(--clr-pink-400) h s l / 50%);
+      border-radius: 100vw;
+
+      padding-block: var(--input-padding);
+      padding-inline: 1.5rem;
+      padding-right: calc(25% + 2rem);
+      width: 100%;
+      font-size: 14px;
+
+      + img {
+        position: absolute;
+        top: 50%;
+        right: calc(25% + 0.25rem);
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      ~ .invalid-text {
+        position: absolute;
+        top: 100%;
+        left: 1.5rem;
+        padding-block: 0.5rem;
+        color: var(--clr-red-500);
+        /* font-weight: bold; */
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      &.invalid {
+        outline: 2px solid var(--clr-red-500);
+        outline-offset: -2px;
+      }
+
+      &.invalid ~ * {
+        opacity: 1;
+      }
+
+      &::placeholder {
+        color: var(--clr-pink-400);
+        opacity: 60%;
+      }
+    }
+
+    .button {
+      position: absolute;
+      right: 0;
+      inset-block: 0;
+
+      border: none;
+      outline: none;
+      border-radius: 100vw;
+      background: linear-gradient(var(--gradient-2));
+
+      --shadow-color: hsl(from var(--clr-red-500) h s l / 35%);
+      --shadow-hover: hsl(from var(--clr-red-500) h s l / 50%);
+
+      padding-inline: var(--button-width);
+      box-shadow: 0px 8px 12px 0px var(--shadow-color);
+      -webkit-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+      -moz-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+      transition: all 0.3s ease;
+
+      &:hover,
+      &:focus {
+        filter: brightness(122.5%);
+        box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        -webkit-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        -moz-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+      }
+    }
   }
 }
 
