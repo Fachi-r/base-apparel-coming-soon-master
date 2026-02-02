@@ -1,77 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="style.css">
+    <title>Frontend Mentor | Base Apparel coming soon page</title>
+  </head>
 
-  <title>Frontend Mentor | Base Apparel coming soon page</title>
-
-</head>
-
-<body>
-  <main class="lg:flex lg:flex-row h-screen">
-
-    <div class="flex flex-col mx-auto container">
-
-      <header class="flex items-center gap-1.5 px-8 py-8 lg:py-16">
-        <img src="./images/logo.svg" alt="Logo" class="h-[22px] md:h-min object-cover">
+  <body>
+    <main class="layout">
+      <!-- Header -->
+      <header class="header">
+        <img src="./images/logo.svg" alt="Logo" class="logo" />
       </header>
 
-      <img class="size-full object-cover hero-mobile" src="./images/hero-mobile.jpg" alt="Mobile Hero Image">
+      <!-- Hero Image -->
+      <picture class="hero">
+        <source
+          srcset="./images/hero-desktop.jpg"
+          media="(min-width: 1023px)"
+          alt="Desktop Hero Image"
+        />
+        <img
+          class="hero-img"
+          src="./images/hero-mobile.jpg"
+          alt="Mobile Hero Image"
+        />
+      </picture>
 
-      <div class="flex flex-col flex-1 items-center px-[38px] py-16 content">
-
-        <h1 class="lg:pr-20 font-bold text-[42px] md:text-[64px] lg:text-left text-center uppercase leading-[1.05] tracking-[12px]">
-          <span class="font-light text-primary">
-            We're
-          </span>
+      <!-- Content -->
+      <form action="#" class="content">
+        <h1 class="title">
+          <span class="highlight"> We're </span>
           coming soon
         </h1>
 
-
-        <p class="pt-4 lg:pt-8 pb-8 lg:pb-12 text-[14px] text-primary lg:text-[16px] lg:text-left text-center leading-[1.55]">
+        <p class="description">
           Hello fellow shoppers! We're currently building our new fashion store.
-          Add your email below to stay up-to-date with announcements and our launch deals.
+          Add your email below to stay up-to-date with announcements and our
+          launch deals.
         </p>
 
-        <form action="#" class="relative rounded-full w-full max-w-md form">
-
-          <input id="email" type="email" placeholder="Email Address">
-
-          <img class="error-icon" src="./images/icon-error.svg" alt="icon-error">
-
-          <button class="top-1/2 -right-1 z-2 absolute px-[26px] rounded-full -translate-y-1/2 cursor-pointer">
-
-            <img src="./images/icon-arrow.svg" alt="Arrow" class="">
-
+        <label for="email" class="">
+          <input id="email" type="email" placeholder="Email Address" />
+          <img
+            class="error-icon"
+            src="./images/icon-error.svg"
+            alt="icon-error"
+          />
+          <button class="button">
+            <img src="./images/icon-arrow.svg" alt="Arrow" class="arrow-icon" />
           </button>
 
-          <small class="invalid-text">
-            Please provide a valid email
-          </small>
+          <small class="invalid-text"> Please provide a valid email </small>
+        </label>
+      </form>
+    </main>
 
-        </form>
-
-      </div>
-
-    </div>
-
-    <img class="size-full object-cover hero-desktop" src="./images/hero-desktop.jpg" alt="Desktop Hero Image">
-
-    <footer class="bottom-4 left-1/2 fixed -translate-x-1/2">
+    <!-- Footer -->
+    <footer class="footer">
       <p class="attribution">
-        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-        Coded by <a href="#">Fachi</a>.
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Fachi</a>.
       </p>
     </footer>
-  </main>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4" defer></script>
-<script src="script.js"></script>
+  </body>
 
+  <script src="script.js"></script>
 </html>

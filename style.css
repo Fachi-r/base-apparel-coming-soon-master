@@ -1,52 +1,133 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..600;1,100..700&display=swap");
-@import "tailwindcss";
-
-@theme {
-  --color-base: lch(25.12% 3.24 19.93);
-  --color-primary: lch(67.64% 22.18 21.52);
-  --color-secondary: lch(61.44% 65.28 27.83);
-}
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300..600;1,300..600&display=swap");
 
 :root {
-  --color-base: hsl(0, 6%, 24%);
-  --color-primary: hsl(0, 36%, 70%);
-  --color-secondary: hsl(0, 93%, 68%);
+  --clr-pink-400: hsl(0, 36%, 70%);
+  --clr-red-500: hsl(0, 93%, 68%);
+  --clr-grey-900: hsl(0, 6%, 24%);
 
-  --gradient-01: 135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%);
-  --gradient-02: 135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%);
+  --gradient-1: 135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%);
+  --gradient-2: 135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%);
 
   --input-padding: 0.75rem;
   --button-width: 2rem;
 }
 
-@layer base {
-  * {
-    font-family: "Josefin Sans", sans-serif;
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
   }
 }
 
-.border-primary {
-  border-color: var(--color-primary);
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
 }
 
-.text-primary {
-  color: var(--color-primary);
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
-.text-secondary {
-  color: var(--color-secondary);
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
-main .container.desktop {
-  background-image: url("./images/bg-pattern-desktop.svg");
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  padding-left: 8rem;
-  padding-right: 12rem;
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/**/
+/* .layout { */
+/*   display: grid; */
+/*   min-height: 100vh; */
+/*   /* align-items: start; */
+*/
+/**/
+/*   grid-template-columns: 1fr; */
+/*   grid-template-areas: */
+/*     "header" */
+/*     "hero" */
+/*     "content"; */
+/**/
+/*   > * { */
+/*     border: 1px solid red; */
+/*   } */
+/* } */
+/**/
+/* .header { */
+/*   grid-area: header; */
+/*   height: min-content; */
+/* } */
+/**/
+/* .hero { */
+/*   grid-area: hero; */
+/*   width: 100%; */
+/*   height: 100%; */
+/*   object-fit: cover; */
+/* } */
+/**/
+/* .content { */
+/*   grid-area: content; */
+/* } */
+
+/* @media (min-width: 1024px) { */
+/*   .layout { */
+/*     grid-template-columns: 1fr auto; */
+/*     grid-template-rows: auto 1fr; */
+/**/
+/*     grid-template-areas: */
+/*       "header  hero" */
+/*       "content hero"; */
+/*   } */
+/* } */
 
 input#email {
   position: relative;
@@ -116,10 +197,12 @@ button {
   }
 }
 
-.hidden {
-  display: none;
+.footer {
+  position: fixed;
+  bottom: 0;
+  inset-inline: 0;
+  padding: 1rem;
 }
-
 .attribution {
   font-size: 11px;
   text-align: center;
@@ -128,15 +211,3 @@ button {
     color: hsl(228, 45%, 44%);
   }
 }
-
-@media screen and (min-width: 768px) {
-  :root {
-    --input-padding: 1rem;
-    --button-width: 2.75rem;
-  }
-
-  input#email {
-    font-size: 1rem;
-  }
-}
-
