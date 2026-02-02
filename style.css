@@ -84,22 +84,13 @@ h6 {
 
 .layout {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
 
   grid-template-areas:
     "header"
     "hero"
     "content";
-
-  @media (min-width: 1024px) {
-    .layout {
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto 1fr;
-
-      grid-template-areas:
-        "header  hero"
-        "content hero";
-    }
-  }
 }
 
 .header {
@@ -116,6 +107,7 @@ h6 {
   grid-area: hero;
 
   .hero-img {
+    object-fit: cover;
     width: 100%;
   }
 }
@@ -165,11 +157,12 @@ h6 {
       padding-right: calc(25% + 2rem);
       width: 100%;
       font-size: 14px;
+      color: var(--clr-grey-900);
 
-      + img {
+      + .error-icon {
         position: absolute;
         top: 50%;
-        right: calc(25% + 0.25rem);
+        right: 25%;
         transform: translateY(-50%);
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
@@ -211,21 +204,21 @@ h6 {
       border-radius: 100vw;
       background: linear-gradient(var(--gradient-2));
 
-      --shadow-color: hsl(from var(--clr-red-500) h s l / 35%);
-      --shadow-hover: hsl(from var(--clr-red-500) h s l / 50%);
+      --shadow-color: hsl(from var(--clr-red-500) h s 30% / 15%);
+      --shadow-hover: hsl(from var(--clr-red-500) h s 30% / 25%);
 
       padding-inline: var(--button-width);
-      box-shadow: 0px 8px 12px 0px var(--shadow-color);
-      -webkit-box-shadow: 0px 8px 12px 0px var(--shadow-color);
-      -moz-box-shadow: 0px 8px 12px 0px var(--shadow-color);
+      box-shadow: 0px 14px 14px 0px var(--shadow-color);
+      -webkit-box-shadow: 0px 14px 14px 0px var(--shadow-color);
+      -moz-box-shadow: 0px 14px 14px 0px var(--shadow-color);
       transition: all 0.3s ease;
 
       &:hover,
       &:focus {
-        filter: brightness(122.5%);
-        box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-        -webkit-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
-        -moz-box-shadow: 0px 10px 16px 0px var(--shadow-hover);
+        filter: brightness(125%);
+        box-shadow: 0px 14px 14px 0px var(--shadow-hover);
+        -webkit-box-shadow: 0px 14px 14px 0px var(--shadow-hover);
+        -moz-box-shadow: 0px 14px 14px 0px var(--shadow-hover);
       }
     }
   }
@@ -243,5 +236,65 @@ h6 {
 
   a {
     color: hsl(228, 45%, 44%);
+  }
+}
+
+@media (min-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr minmax(1fr, auto);
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+
+    background-image:
+      url("./images/bg-pattern-desktop.svg"),
+      url("./images/bg-pattern-desktop.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    grid-template-areas:
+      "header  hero"
+      "content hero";
+
+    padding-left: 9rem;
+
+    .header {
+      padding-block: 4.5rem;
+
+      .logo {
+        height: auto;
+      }
+    }
+
+    .heading {
+      text-align: start;
+      font-size: 4rem;
+      letter-spacing: 1rem;
+    }
+
+    .content {
+      padding-right: 11rem;
+      max-width: 800px;
+    }
+
+    .description {
+      text-align: left;
+      font-size: 1rem;
+      padding-block: 2rem;
+    }
+
+    .input-container {
+      --input-padding: 1rem;
+      --button-width: 2.5rem;
+
+      .email-input {
+        background: transparent;
+        font-size: 1rem;
+      }
+    }
+
+    .hero-img {
+      height: 100%;
+    }
   }
 }
