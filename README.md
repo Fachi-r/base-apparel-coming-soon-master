@@ -15,7 +15,12 @@ This is a solution to the [Base Apparel coming soon page challenge on Frontend M
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
+      - [Picture Element](#picture-element)
+      - [Grid Template Areas](#grid-template-areas)
+      - [Relative CSS selectors](#relative-css-selectors)
+      - [Validation on Form Submit](#validation-on-form-submit)
     - [Continued development](#continued-development)
+      - [Revisit Font sizing](#revisit-font-sizing)
     - [Useful resources](#useful-resources)
   - [Author](#author)
   <!--toc:end-->
@@ -46,50 +51,201 @@ Users should be able to:
 ### Built with
 
 - Semantic HTML5 markup
-- Tailwind CSS Classes
 - CSS custom properties
-- Flexbox
+- CSS Grid
 - Mobile-first workflow
 - Javascript
 
 ### What I learned
 
 Dynamic layouts are not as easy as I thought.
-At first, I figured the `<picture>` tag would be adequate to switch between
-images at different screes sizes. But it turns out the images switches positions
-from the start of
+At first, I figured the `<picture>` tag and flex-box would be enough to
+get this done, but I found out quickly that was not the case.
+
+This was a great opportunity to get acquainted with css-grid layouts.
+Since the layout would shift around in a non-linear manner, i.e.:
+
+On mobile, your order is:
+
+1. Header
+2. Hero image
+3. Content
+
+On desktop, it becomes:
+
+- Left column: Header + Content
+- Right column: Hero image
+
+That’s not a reversal. That’s re-grouping elements. Flexbox only reorders
+siblings linearly. Grid lets you place things.
+
+Therefore to implement this solution, here were a few notable pieces of
+the puzzle:
+
+#### Picture Element
+
+Firstly, the HTML markup was pretty sane. The expected order of the
+desktop layout (Header -> Hero -> Content).
+The main container was `<main class="layout">`, the header
+`<header class="header">`, hero `<picture class="hero">`, and the content
+container was `<form class="content">`. All with semantic tags.
+
+I recall from the last challenge I did, someone advised me that the better
+way to do dynamic images is to use the picture element. And man we're
+they right. I used this accordingly.
 
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<!-- Hero Image -->
+<picture class="hero">
+  <source
+    srcset="./images/hero-desktop.jpg"
+    media="(min-width: 720px)"
+    alt="Desktop Hero Image"
+  />
+  <img
+    class="hero-img"
+    src="./images/hero-mobile.jpg"
+    alt="Mobile Hero Image"
+  />
+</picture>
 ```
 
+easy as that.
+
+#### Grid Template Areas
+
+Next thing was the styling. This is was the cream of the challenge.
+This was the setup for mobile view. Very descriptive:
+
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    grid-template-areas:
+      "header"
+      "hero"
+      "content";
+  }
+
+  .header {
+    grid-area: header;
+    ...
+  }
+
+  .hero {
+    grid-area: hero;
+    ...
+  }
+
+  .content {
+    grid-area: content;
+    ...
+  }
+```
+
+And then for larger screens:
+
+```css
+@media (min-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr minmax(1fr, auto);
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+
+    grid-template-areas:
+      "header  hero"
+      "content hero";
+  }
 }
 ```
 
+This was in my opinion the main learning point of the challenge.
+
+#### Relative CSS selectors
+
+I also got a chance to practice CSS selectors.
+This made it easier to style components related to the form like the
+error icon, and error text, without leaving the scope/context.
+
+```css
+.email-input {
+  ...
+  color: var(--clr-grey-900);
+
+  + .error-icon {
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    ...
+  }
+
+  ~ .invalid-text {
+    position: absolute;
+    top: 100%;
+    left: 1.5rem;
+    ...
+  }
+
+  &.invalid {
+    outline: 2px solid var(--clr-red-500);
+    outline-offset: -2px;
+  }
+
+  &.invalid ~ * {
+    opacity: 1;
+  }
+
+  &::placeholder {
+    color: var(--clr-pink-400);
+    opacity: 60%;
+  }
+}
+```
+
+#### Validation on Form Submit
+
+Making sure the validation only happens when the user submits the email,
+instead of as they type was a welcome Quality-of-Life addition.
+Initially I did it the other way, but I can see how it would be annoying
+for a form to yell at you about your email when you're not even done
+typing it yet. So I used this JavaScript code to read the input state:
+
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+submitButton.addEventListener("click", handleSubmit);
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let email = emailInput.value.trim();
+
+  if (email == "" || emailInput.matches(":invalid")) {
+    invalidateForm();
+  } else {
+    validateForm();
+  }
+}
 ```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+#### Revisit Font sizing
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I ran into a problem where the styling was perfect when using the dev tools in
+the browser, on all devices, but when I viewed it natively in the browser, the
+sizes turned out to be too small for some reason.
+I'll need to look into this further and find the cause.
+Alternatively, I could create a font scaling system using clamps based on the viewport width.
+That way I wouldn't need to set discrete font size values.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Josh Comeau's Custom CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset) - This helped me avoid a few layout headaches with the images.
+  I really liked this pattern and will use it going forward.
+- [MDN Using Relative Colors Guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Colors/Using_relative_colors) - This is an amazing article which helped me understand relative colors.
+  I'd recommend it to anyone still learning this concept.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@Fachi-r](https://www.frontendmentor.io/profile/fachi-r)
 - Twitter - [@\_fachi_0](https://www.twitter.com/_fachi_0)
